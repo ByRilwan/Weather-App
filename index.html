@@ -13,9 +13,11 @@
     <div class="search">
         <input type="text" id="searchInput" placeholder="Search for a city" spellcheck="false">
         <button><img src="images/search.png"></button>
+        <div class="autocomplete"></div>
+        
     </div>
     <div class="error">
-        <p>Invalid city name</p>
+        <p>Invalid city name.</p>
     </div>
     <div class="weather">
         <img src="images/rain.png" class="weather-icon">
@@ -95,7 +97,13 @@ searchBtn.addEventListener("click" , ()=> {
     checkWeather(searchBox.value);
 });
 
-
+searchInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+        const inputValue = searchInput.value;
+        checkWeather(inputValue);
+        autocompleteDropdown.innerHTML = '';
+    }
+});
 </script>
 
     </body>
